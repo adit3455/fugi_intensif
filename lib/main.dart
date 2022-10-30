@@ -24,6 +24,19 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int counter = 0;
+  double foSize = 20;
+
+  void increaseFoSize() {
+    setState(() {
+      foSize += 10;
+    });
+  }
+
+  void decreaseFoSize() {
+    setState(() {
+      foSize -= 10;
+    });
+  }
 
   void add() {
     setState(() {
@@ -48,7 +61,10 @@ class _HomePageState extends State<HomePage> {
           child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text("Counter number now is : $counter"),
+          Text(
+            "Counter number now is : $counter",
+            style: TextStyle(fontSize: foSize),
+          ),
           const SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -58,7 +74,19 @@ class _HomePageState extends State<HomePage> {
               OutlinedButton(
                   onPressed: () => add(), child: const Icon(Icons.add)),
             ],
-          )
+          ),
+          const SizedBox(height: 20),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              OutlinedButton(
+                  onPressed: () => decreaseFoSize(),
+                  child: const Icon(Icons.remove)),
+              OutlinedButton(
+                  onPressed: () => increaseFoSize(),
+                  child: const Icon(Icons.add)),
+            ],
+          ),
         ],
       )),
     );
